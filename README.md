@@ -36,6 +36,7 @@
 ## Example
 
 #### Input options in script:
+```JavaScript
 	/* ~/www/project-x/version.js */
 	var Version = require("node-version-assets");
 	var versionInstance = new Version({
@@ -43,6 +44,7 @@
 		grepFiles: ['views/prod/index.html']
 	});
 	versionInstance.run();
+```
 
 #### Run the script:
 	andy@bada55:~/www/project-x$ node version.js
