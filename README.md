@@ -8,7 +8,7 @@
 
 ## What it does:
 1. Renames assets on filesystem
-
+```Shell
 		## BEFORE
 		/www/project-x/public/css$ ls -l
 		> all-min.css
@@ -16,15 +16,16 @@
 		## AFTER
 		/www/project-x/public/css$ ls -l
 		> all-min.44d0440440442524c6d667900275e.css
+```
 
 2.  Find and replaces references to them in files:
-
+```HTML
 		<!-- index.html: BEFORE -->
 		<link rel="stylesheet" type="text/css" href="css/all-min.css">
 
 		<!-- index.html: AFTER -->
 		<link rel="stylesheet" type="text/css" href="css/all-min.44d0440440442524c6d667900275e.css">
-
+```
 
 ## How this module fits into your build process:
 1. you:		generate fresh asset and output to the location specified in options.assets (> /public/css/all.min.css)
@@ -47,6 +48,8 @@
 ```
 
 #### Run the script:
+
+```Shell
 	andy@bada55:~/www/project-x$ node version.js
 
 	Deleted Assets:
@@ -59,10 +62,10 @@
 
 	Files whose contents were updated with refs to renamed asset files:
 	   views/prod/index.html
-
+```
 
 ## Grunt Example
-
+```JavaScript
 	grunt.registerTask('version-assets', 'version the static assets just created', function() {
 
 		var Version = require("node-version-assets");
@@ -77,7 +80,7 @@
 
 	// make sure versioning is final task
 	grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin version-assets');
-
+```
 
 ## Options
 
@@ -110,7 +113,7 @@
 - not required: defaults to false
 
 If set to true then unsuffixed js assets (listed in the assets array) will be updated to the new version, eg:
-
+```HTML
 	<script type="text/javascript">
 		require.config({
 			paths: {
@@ -123,7 +126,7 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 			}
 		});
 	</script>
-
+```
 
 
 ## Potential Gotchas
