@@ -9,22 +9,22 @@
 ## What it does:
 1. Renames assets on filesystem
 ```Shell
-## BEFORE
-/www/project-x/public/css$ ls -l
-> all-min.css
+	## BEFORE
+	/www/project-x/public/css$ ls -l
+	> all-min.css
 
-## AFTER
-/www/project-x/public/css$ ls -l
-> all-min.44d0440440442524c6d667900275e.css
+	## AFTER
+	/www/project-x/public/css$ ls -l
+	> all-min.44d0440440442524c6d667900275e.css
 ```
 
 2.  Find and replaces references to them in files:
 ```HTML
-<!-- index.html: BEFORE -->
-<link rel="stylesheet" type="text/css" href="css/all-min.css">
+	<!-- index.html: BEFORE -->
+	<link rel="stylesheet" type="text/css" href="css/all-min.css">
 
-<!-- index.html: AFTER -->
-<link rel="stylesheet" type="text/css" href="css/all-min.44d0440440442524c6d667900275e.css">
+	<!-- index.html: AFTER -->
+	<link rel="stylesheet" type="text/css" href="css/all-min.44d0440440442524c6d667900275e.css">
 ```
 
 ## How this module fits into your build process:
