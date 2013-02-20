@@ -9,22 +9,22 @@
 ## What it does:
 1. Renames assets on filesystem
 ```Shell
-		## BEFORE
-		/www/project-x/public/css$ ls -l
-		> all-min.css
+## BEFORE
+/www/project-x/public/css$ ls -l
+> all-min.css
 
-		## AFTER
-		/www/project-x/public/css$ ls -l
-		> all-min.44d0440440442524c6d667900275e.css
+## AFTER
+/www/project-x/public/css$ ls -l
+> all-min.44d0440440442524c6d667900275e.css
 ```
 
 2.  Find and replaces references to them in files:
 ```HTML
-		<!-- index.html: BEFORE -->
-		<link rel="stylesheet" type="text/css" href="css/all-min.css">
+<!-- index.html: BEFORE -->
+<link rel="stylesheet" type="text/css" href="css/all-min.css">
 
-		<!-- index.html: AFTER -->
-		<link rel="stylesheet" type="text/css" href="css/all-min.44d0440440442524c6d667900275e.css">
+<!-- index.html: AFTER -->
+<link rel="stylesheet" type="text/css" href="css/all-min.44d0440440442524c6d667900275e.css">
 ```
 
 ## How this module fits into your build process:
@@ -38,48 +38,48 @@
 
 #### Input options in script:
 ```JavaScript
-	/* ~/www/project-x/version.js */
-	var Version = require("node-version-assets");
-	var versionInstance = new Version({
-		assets: ['public/css/all-min.css', 'public/js/app.js'],
-		grepFiles: ['views/prod/index.html']
-	});
-	versionInstance.run();
+/* ~/www/project-x/version.js */
+var Version = require("node-version-assets");
+var versionInstance = new Version({
+	assets: ['public/css/all-min.css', 'public/js/app.js'],
+	grepFiles: ['views/prod/index.html']
+});
+versionInstance.run();
 ```
 
 #### Run the script:
 
 ```Shell
-	andy@bada55:~/www/project-x$ node version.js
+andy@bada55:~/www/project-x$ node version.js
 
-	Deleted Assets:
-	   public/css/all-min.css
-	   public/js/app.js
+Deleted Assets:
+   public/css/all-min.css
+   public/js/app.js
 
-	Versioned Assets Created:
-	   public/css/all-min.44d0440440442524c6d667900275e.css: file unchanged > version number re-used
-	   public/js/app.12d070550742574e8d87900er34.js: file unchanged > version number re-used
+Versioned Assets Created:
+   public/css/all-min.44d0440440442524c6d667900275e.css: file unchanged > version number re-used
+   public/js/app.12d070550742574e8d87900er34.js: file unchanged > version number re-used
 
-	Files whose contents were updated with refs to renamed asset files:
-	   views/prod/index.html
+Files whose contents were updated with refs to renamed asset files:
+   views/prod/index.html
 ```
 
 ## Grunt Example
 ```JavaScript
-	grunt.registerTask('version-assets', 'version the static assets just created', function() {
+grunt.registerTask('version-assets', 'version the static assets just created', function() {
 
-		var Version = require("node-version-assets");
-		var versionInstance = new Version({
-			assets: ['public/css/all-min.css', 'public/js/app.js'],
-			grepFiles: ['views/prod/index.html']
-		});
-
-		var cb = this.async(); // grunt async callback
-		versionInstance.run(cb);
+	var Version = require("node-version-assets");
+	var versionInstance = new Version({
+		assets: ['public/css/all-min.css', 'public/js/app.js'],
+		grepFiles: ['views/prod/index.html']
 	});
 
-	// make sure versioning is final task
-	grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin version-assets');
+	var cb = this.async(); // grunt async callback
+	versionInstance.run(cb);
+});
+
+// make sure versioning is final task
+grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin version-assets');
 ```
 
 ## Options
@@ -114,18 +114,18 @@
 
 If set to true then unsuffixed js assets (listed in the assets array) will be updated to the new version, eg:
 ```HTML
-	<script type="text/javascript">
-		require.config({
-			paths: {
+<script type="text/javascript">
+	require.config({
+		paths: {
 
-				<!-- BEFORE: -->
-				main: "js/app.newie"
+			<!-- BEFORE: -->
+			main: "js/app.newie"
 
-				<!-- AFTER: -->
-				main: "js/app.newie.001"
-			}
-		});
-	</script>
+			<!-- AFTER: -->
+			main: "js/app.newie.001"
+		}
+	});
+</script>
 ```
 
 
