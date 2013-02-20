@@ -1,0 +1,32 @@
+	<!--========================= MINIFIED STYLESHEETS =========================-->
+	<link rel="stylesheet" type="text/css" href="css/all-min.1360871038416.css">
+
+
+		<script type="text/javascript" src="js/vendor/requirejs/require.js"></script>
+		<script type="text/javascript" src="js/vendor/blah/blah.js"></script>
+		<script type="text/javascript" src="js/app.oldie.1360871038416.js"></script>
+		<script type="text/javascript" src="js/app.newie.1360871038416.js"></script>
+		<!--[if lt IE 9 | IEMobile 7]>
+			<script type="text/javascript">
+				require.config({
+					paths: {
+						main: "js/app.oldie.1360871038416"
+					}
+				});
+			</script>
+		<![endif]-->
+		<!--[if gte IE 9 | (gt IEMobile 7) | !IE]><!-->
+			<script type="text/javascript">
+				require.config({
+					paths: {
+						main: "js/app.newie.1360871038416"
+					}
+				});
+			</script>
+		<!--[endif]-->
+
+
+		<script type="text/javascript">
+			// var appPath = (!!window.Worker) ? 'js/app.client' : 'js/app.server';
+			require(["main"]);
+		</script>

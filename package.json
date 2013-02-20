@@ -1,0 +1,49 @@
+{
+  "name": "node-version-assets",
+  "version": "0.0.1",
+  "description": "version your static assets",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "tap ./test",
+    "pretest": "node ./test-utils/pre-post-test",
+    "posttest": "node ./test-utils/pre-post-test"
+  },
+  "homepage": "http://projects.andrewgriffithsonline.com/#node-version-assets",
+  "author": "Andrew Griffiths",
+  "maintainers": [
+    {
+      "name": "Andrew Griffiths",
+      "email": "mail@andrewgriffithsonline.com",
+      "web": "http://projects.andrewgriffithsonline.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:techjacker/node-version-assets.git"
+  },
+  "github": "https://github.com/techjacker/node-version-assets",
+  "bugs": {
+    "url": "https://github.com/techjacker/node-version-assets/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/techjacker/node-version-assets/blob/master/LICENSE"
+    }
+  ],
+  "keywords": [
+    "static assets",
+    "versioning"
+  ],
+  "devDependencies": {
+    "tap": "https://github.com/isaacs/node-tap/archive/master.tar.gz",
+    "curry": "0.0.4",
+    "async": "~0.2.5"
+  },
+  "dependencies": {
+    "underscore": "~1.4.4",
+    "async": "~0.2.1",
+    "crypto": "0.0.3"
+  }
+}
