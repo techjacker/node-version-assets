@@ -9,7 +9,7 @@
     "pretest": "node ./test-utils/pre-post-test",
     "posttest": "node ./test-utils/pre-post-test"
   },
-  "homepage": "http://projects.andrewgriffithsonline.com/#node-version-assets",
+  "homepage": "http://projects.andrewgriffithsonline.com",
   "author": "Andrew Griffiths",
   "maintainers": [
     {
@@ -20,7 +20,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git@github.com:techjacker/node-version-assets.git"
+    "url": "https://github.com/techjacker/node-version-assets"
   },
   "github": "https://github.com/techjacker/node-version-assets",
   "bugs": {

@@ -6,6 +6,11 @@
 - See below for grunt integration example.
 
 
+## Install
+```Shell
+npm install -g node-version-assets
+```
+
 ## What it does:
 1. Renames assets on filesystem
 ```Shell
@@ -134,3 +139,6 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 - Check all asset paths are correct: they must be relative to the dir where you are executing the command.
 - The new assets must exist in an unversioned form on the filesystem to be renamed and be listed in the {options.assets} array
 - If you specify a version number it can only contain letters or numbers (ie no special characters)
+
+## To Do
+- Add option to disable auto deleting of the original unversioned asset + old versions of it
