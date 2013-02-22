@@ -113,6 +113,14 @@ grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin versi
 - not required: defaults to generating an md5 hash of the file (recommended to leave as default as md5 hashing means that assets will not blow browser cache if they're unchanged)
 
 
+#### @param {options.keepOriginalAndOldVersions}
+- accepts: boolean
+- set this to true if you want to disable auto-deletion
+- by default the module deletes:
+	1. the original, unversioned asset (eg app.js)
+	2. previous versions of the asset (eg app.435fdg435TG435435.js)
+
+
 #### @param {options.requireJs}
 - accepts: boolean
 - not required: defaults to false
