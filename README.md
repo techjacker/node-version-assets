@@ -148,5 +148,7 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 - The new assets must exist in an unversioned form on the filesystem to be renamed and be listed in the {options.assets} array
 - If you specify a version number it can only contain letters or numbers (ie no special characters)
 
-## To Do
-- Add option to disable auto deleting of the original unversioned asset + old versions of it
+
+## Version Log
+- 0.0.2: added {options.keepOriginalAndOldVersions}
+- 0.0.3: enabled versioning of all file types (previously just utf8)
