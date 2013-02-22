@@ -49,7 +49,7 @@ test('Deleter.dirList() + .markForDeletion() + .deleteFiles: List Directory Cont
 		cssFilePreviousVersion = cssFile.replace('.', '.' + versionNum + '.'),
 		cssFilePreviousVersionOriginal = cssFile.replace('.css', '.' + versionNum + '.css.original'),
 		dirContents = [cssFilePreviousVersionOriginal, cssFile, cssFile + '.original', cssFilePreviousVersion],
-		cssFilesForDeletion = [cssDir + cssFile, cssDir + cssFilePreviousVersion];
+		cssFilesForDeletion = [cssDir + cssFilePreviousVersion];
 
 
 		// TESTS:::::: .dirList()
@@ -62,7 +62,7 @@ test('Deleter.dirList() + .markForDeletion() + .deleteFiles: List Directory Cont
 
 		// TESTS:::::: .markForDeletion()
 		cbMarkForDeletionTests = function (filesForDeletion, callback) {
-			t.deepEqual(filesForDeletion, cssFilesForDeletion, "returns correct list of files marked for deletion");
+			t.deepEqual(filesForDeletion, cssFilesForDeletion, "returns correct list of files marked for deletion > should NOT include original file");
 			callback(null);
 		},
 

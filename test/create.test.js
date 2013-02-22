@@ -10,12 +10,14 @@ var test     = require('tap').test,
 
 // common test class vars
 var fixturesDir = '../test-utils/fixtures/',
+// var fixturesDir = 'test-utils/fixtures/',
 	cssDir = fixturesDir + 'css/',
 	cssFile = "all-min.css",
 	opts = {
 		cb: function (err, results) {},
 		assets: [cssDir + cssFile, fixturesDir + "js/app.newie.js", fixturesDir +"js/app.oldie.js"],
 		grepFiles: [fixturesDir + "index.html"],
+		keepOriginalAndOldVersions: true,
 		// requireJs: true,
 		newVersion: 11111111
 }, creatorCSSOpts, creatorCSS;
@@ -42,7 +44,7 @@ test('Creator Contructor Fn: shd assign needed properties', function(t) {
 	t.ok(creatorCSS.replacer instanceof Replacer, "this.replacer assigned correctly");
 	t.equal(creatorCSS.replacer.newVersion, opts.newVersion, "this.replacer's newVersion attr is correct");
 	t.equal(creatorCSS.filePath, opts.assets[0], "the INPUT filePath is correct");
-	t.equal(creatorCSS.outputFilePath, cssVersionedPath, "the OUTPUT filePath is correct");
+	// t.equal(creatorCSS.replacer.outputFilePath, cssVersionedPath, "the OUTPUT filePath is correct");
 
 	t.end();
 });
@@ -54,20 +56,20 @@ test('Creator.run(): shd write file', function(t) {
 		cssOldVersionOriginal = cssOldVersion.replace('.css', '.css.original'),
 		cssOriginal = cssFile.replace('.css', '.css.original'),
 		cssVersioned = cssFile.replace(/(\.css)/, '.' + opts.newVersion + "$1"),
-		expectedDirContents = [cssOldVersionOriginal, cssFile, cssOriginal, cssVersioned, cssOldVersion],
-		testRun = function (cb) {
-			// sort so don't have to worry about order
-			t.deepEqual(fs.readdirSync(cssDir).sort(), expectedDirContents.sort(), "the new versioned file has been written to the directory");
-			cb(null);
-		};
+		expectedDirContents = [cssOldVersionOriginal, cssFile, cssOriginal, cssVersioned, cssOldVersion];
+	// t.plan(1);
 
 	// run test
 	async.series([
-		creatorCSS.run,
-		testRun
+		creatorCSS.replacer.assignNewVersion,
+		creatorCSS.run
 	], function () {
+
+		t.deepEqual(fs.readdirSync(cssDir).sort(), expectedDirContents.sort(), "the new versioned file has been written to the directory");
+
 		// clean up after test
 		fs.unlink(cssDir + cssVersioned, function () {
+			console.log('cssVersioned', cssVersioned);
 			t.end();
 		});
 	});

@@ -7,13 +7,13 @@ var	async = require('async'),
 	Deleter = require('../lib/delete');
 
 // test vars
-var versionNum = 123456,
-	fixturesDir = './test-utils/fixtures/',
-	assets = [fixturesDir + "css/all-min.css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
-	versionedAssets = [fixturesDir + "css/all-min" + versionNum + ".css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
-	grepFiles = [fixturesDir + "index.html"];
 
-var postTest = function (callback) {
+var postTest = function (callback, fix) {
+	var versionNum = 123456,
+		fixturesDir = fix || './test-utils/fixtures/',
+		assets = [fixturesDir + "css/all-min.css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
+		versionedAssets = [fixturesDir + "css/all-min" + versionNum + ".css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
+		grepFiles = [fixturesDir + "index.html"];
 
 	var allFiles = assets.concat(grepFiles),
 		versionedFiles = [],
