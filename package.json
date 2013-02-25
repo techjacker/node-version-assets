@@ -1,6 +1,6 @@
 {
   "name": "node-version-assets",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "version your static assets",
   "main": "index.js",
   "scripts": {
