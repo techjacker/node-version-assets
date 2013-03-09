@@ -152,3 +152,4 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 ## Version Log
 - 0.0.2: added {options.keepOriginalAndOldVersions}
 - 0.0.3: enabled versioning of all file types (previously just utf8)
+- 0.0.4 - 0.0.8: misc bug fixes

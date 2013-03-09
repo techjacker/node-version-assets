@@ -69,7 +69,6 @@ test('Creator.run(): shd write file', function(t) {
 
 		// clean up after test
 		fs.unlink(cssDir + cssVersioned, function () {
-			console.log('cssVersioned', cssVersioned);
 			t.end();
 		});
 	});
