@@ -1,5 +1,7 @@
 # node-version-assets
 
+[![Build Status](https://secure.travis-ci.org/techjacker/node-version-assets.png)](http://travis-ci.org/techjacker/node-version-assets)
+
 - Versions your static assets using the power of streams!
 - Version number produced from md5hash of each file -> so unchanged assets will keep the same file name and not blow the browser cache.
 - Add to your build scripts/favourite build tool.
