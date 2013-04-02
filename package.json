@@ -1,6 +1,6 @@
 {
   "name": "node-version-assets",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "version your static assets",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,7 @@
     "pretest": "node ./test-utils/pre-post-test",
     "posttest": "node ./test-utils/pre-post-test"
   },
-  "homepage": "http://projects.andrewgriffithsonline.com",
-  "author": "Andrew Griffiths",
+  "author": "Andrew Griffiths <mail@andrewgriffithsonline.com>",
   "maintainers": [
     {
       "name": "Andrew Griffiths",
@@ -23,6 +22,9 @@
     "url": "https://github.com/techjacker/node-version-assets"
   },
   "github": "https://github.com/techjacker/node-version-assets",
+  "engines": [
+    "node >= 0.8.0"
+  ],
   "bugs": {
     "url": "https://github.com/techjacker/node-version-assets/issues"
   },
@@ -31,6 +33,10 @@
       "type": "MIT",
       "url": "https://github.com/techjacker/node-version-assets/blob/master/LICENSE"
     }
+  ],
+  "tags": [
+    "static assets",
+    "versioning"
   ],
   "keywords": [
     "static assets",
