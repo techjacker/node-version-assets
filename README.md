@@ -4,6 +4,7 @@
 
 - Versions your static assets using the power of streams!
 - Version number produced from md5hash of each file -> so unchanged assets will keep the same file name and not blow the browser cache.
+- Greps your html and css files and updates filenames of versioned files.
 - Add to your build scripts/favourite build tool.
 - See below for grunt integration example.
 

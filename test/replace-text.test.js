@@ -1,11 +1,14 @@
-var test = require('tap').test,
-	_ = require('underscore'),
-	ReplaceText = require('../lib/replace-text');
+/*jslint nomen: true, plusplus: false, sloppy: true, white:true*/
+/*jshint nomen: false, curly: true, plusplus: false, expr:true, undef:true, newcap:true, latedef:true, camelcase:true  */
+/*global module: false, iScroll:false, setTimeout: false, document:false, WebKitCSSMatrix:false, _: false, Backbone: false, backbone: false, $: false, define: false, require: false, console: false, window:false */
+var test        = require('tap').test,
+    _           = require('underscore'),
+    ReplaceText = require('../lib/replace-text');
 
 var opts = {
 	newVersion: 1234,
 	requireJs: false,
-	filePath: "js/app.newie.js",
+	filePath: "js/app.newie.js"
 };
 
 test('Replace Text Contructor Fn: shd create needed regexes', function(t) {
@@ -64,15 +67,15 @@ test('.proto.run(haystack): shd replace text', function(t) {
 		// requireJS
 		jsHaystackRequireJs             = jsHaystackStemVers + '.35434354"',
 		jsHaystackExpectedRequireJs     = jsHaystackStem + jsAsset + '.' + opts.newVersion + '.js"> ' + "\n" + 'main: "' + jsAsset + '.' + opts.newVersion + '"',
-		// jsHaystackDataRJs 				= '<script data-main="' + jsAsset + '.1354354345' + '" src="/js/vendor/require.js"/>',
-		jsHaystackDataRJs 				= '<script data-main="' + jsAsset + '" src="/js/vendor/require.js"/>',
+		// jsHaystackDataRJs				= '<script data-main="' + jsAsset + '.1354354345' + '" src="/js/vendor/require.js"/>',
+		jsHaystackDataRJs				= '<script data-main="' + jsAsset + '" src="/js/vendor/require.js"/>',
 		jsHaystackExpectedDataRJs       = '<script data-main="' + jsAsset + '.' + opts.newVersion + '" src="/js/vendor/require.js"/>',
 		replacerCSS         = new ReplaceText(_.extend({}, opts, {requireJs:true, filePath: cssAssetSuffixed})),
 		replacerJs          = new ReplaceText(_.extend({}, opts, {filePath: jsAssetSuffixed})),
-		replacerRequireJs   = new ReplaceText(_.extend({}, opts, {requireJs:true, filePath: jsAssetSuffixed}));
+		replacerRequireJs   = new ReplaceText(_.extend({}, opts, {requireJs:true, filePath: jsAssetSuffixed})),
 		// bug fix 0.0.8
-		jsAssetTwo 						= '/js/modules/main',
-		jsHaystackDataRJsTwo 			= '<script data-main="' + jsAssetTwo + '" src="/js/vendor/require.js"/>',
+		jsAssetTwo						= '/js/modules/main',
+		jsHaystackDataRJsTwo			= '<script data-main="' + jsAssetTwo + '" src="/js/vendor/require.js"/>',
 		jsHaystackExpectedDataRJsTwo    = '<script data-main="' + jsAssetTwo + '.' + opts.newVersion + '" src="/js/vendor/require.js"/>',
 		replacerRequireJsTwo= new ReplaceText(_.extend({}, opts, {requireJs:true, filePath: jsAssetTwo}));
 
@@ -93,3 +96,30 @@ test('.proto.run(haystack): shd replace text', function(t) {
 	t.end();
 });
 
+test('.proto.run(haystack): shd version img assets in CSS files', function(t) {
+
+	var img = 'test.png',
+		imgVersioned = 'test.' + opts.newVersion + '.png',
+		imgNested = 'assets/img/test.png',
+		imgNestedVersioned = 'assets/img/test.' + opts.newVersion + '.png',
+		haystackGenSingle = function (asset) {
+			var cssBlock = '.hello {\
+				width: 300px;\
+				height: 199px;\
+				background-image: url(\'' + asset + '\');\
+			}';
+			return cssBlock;
+		},
+		haystackGenDouble = function (asset) {
+			return (haystackGenSingle(asset)).replace('\'', '"');
+		},
+		replacerImg = new ReplaceText(_.extend({}, opts, {filePath: img})),
+		replacerImgNested = new ReplaceText(_.extend({}, opts, {filePath: imgNested}));
+
+	t.equal(replacerImg.run(haystackGenSingle(img)), haystackGenSingle(imgVersioned), 'versions single quoted img files');
+	t.equal(replacerImg.run(haystackGenDouble(img)), haystackGenDouble(imgVersioned), 'versions double quoted img files');
+	t.equal(replacerImg.run(haystackGenSingle(imgNested)), haystackGenSingle(imgNestedVersioned), 'versions single quoted imgNested files');
+	t.equal(replacerImg.run(haystackGenDouble(imgNested)), haystackGenDouble(imgNestedVersioned), 'versions double quoted imgNested files');
+
+	t.end();
+});
