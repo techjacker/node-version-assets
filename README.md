@@ -118,10 +118,20 @@ grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin versi
 
 #### @param {options.keepOriginalAndOldVersions}
 - accepts: boolean
-- set this to true if you want to disable auto-deletion
+- set this to true if you want to disable auto-deletion of BOTH the original and old versions
 - by default the module deletes:
 	1. the original, unversioned asset (eg app.js)
 	2. previous versions of the asset (eg app.435fdg435TG435435.js)
+
+#### @param {options.keepOriginal}
+- accepts: boolean
+- set this to true if you want to delete just the ORIGINAL
+- if options.keepOriginalAndOldVersions is true then the old versions will still be deleted
+
+#### @param {options.keepOldVersions}
+- accepts: boolean
+- set this to true if you want to delete just the OLD VERSIONS
+- if options.keepOriginalAndOldVersions is true then the original will still be deleted
 
 
 #### @param {options.requireJs}
