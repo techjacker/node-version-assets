@@ -154,6 +154,11 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 </script>
 ```
 
+#### @param {options.requireLeadingSlash}
+- accepts: boolean
+- not required: defaults to false
+
+If set to true the asset matching is done by adding a leading forward slash to the pattern. This flag is useful if you use absolute paths and have assets with file names matching from the end, e.g. `toolbar.html` and `frame-toolbar.html`.
 
 ## Potential Gotchas
 - Assets that you want versioned must be listed in the assets array
