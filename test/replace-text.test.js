@@ -123,3 +123,27 @@ test('.proto.run(haystack): shd version img assets in CSS files', function(t) {
 
 	t.end();
 });
+
+test('.proto.run(haystack): should correctly version files when one file name contains another file name', function(t) {
+
+	var jsAsset1 = 'bundle.js',
+    jsAsset2 = 'login-bundle.js',
+		jsAsset1Versioned = 'bundle.' + opts.newVersion + '.js',
+		jsAsset2Versioned = 'login-bundle.' + opts.newVersion + '.js',
+    jsHaystack1 = '<script type="text/html" src="/random/public/' + jsAsset1 + '"</script>',
+    jsHaystack1Expected = '<script type="text/html" src="/random/public/' + jsAsset1Versioned + '"</script>',
+    jsHaystack2 = '<script type="text/html" src="/random/public/' + jsAsset2 + '"</script>',
+    jsHaystack2Expected = '<script type="text/html" src="/random/public/' + jsAsset2Versioned + '"</script>',
+		replacerJs1 = new ReplaceText(_.extend({}, opts, {filePath: jsAsset1}));
+		replacerJs2 = new ReplaceText(_.extend({}, opts, {filePath: jsAsset2}));
+
+  // should be replaced
+  t.equal(replacerJs1.run(jsHaystack1), jsHaystack1Expected);
+  t.equal(replacerJs2.run(jsHaystack2), jsHaystack2Expected);
+
+  // should not be replaced
+  t.equal(replacerJs1.run(jsHaystack2), jsHaystack2);
+  t.equal(replacerJs2.run(jsHaystack1), jsHaystack1);
+
+	t.end();
+});
