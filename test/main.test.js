@@ -166,3 +166,20 @@ test('Main.run(): md5 versioning', function(t) {
 		// fixtures dir = dif when run from this script (rather than npm run-script pretest)
 	}, fixturesDir);
 });
+
+test('Main.run(): matching file names', function(t) {
+	var mainInstance = new Main({
+		assets: [
+      jsDir + 'login-bundle.js',
+      jsDir + 'bundle.js'
+    ],
+    grepFiles: []
+	});
+
+	mainInstance.run(function() {
+		var jsDirContents = fs.readdirSync(jsDir);
+		t.ok(jsDirContents.indexOf(mainInstance.replacers[0].outputFileName) !== -1, mainInstance.replacers[0].outputFileName + " exists");
+		t.ok(jsDirContents.indexOf(mainInstance.replacers[1].outputFileName) !== -1, mainInstance.replacers[1].outputFileName + " exists");
+		t.end();
+	});
+});
