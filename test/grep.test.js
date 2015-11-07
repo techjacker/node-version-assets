@@ -1,17 +1,19 @@
-var test = require('tap').test,
-	fs = require('fs'),
-	_ = require('underscore'),
-	Stream = require('stream'),
-	// my libs
-	Replacer = require('../lib/replace-text'),
-	Grepper = require('../lib/grep');
+var test 	= require('tap').test,
+	fs 			= require('fs'),
+  path    = require('path'),
+	_ 			= require('underscore'),
+	Stream 	= require('stream'),
+	
+	// internal modules
+	Replacer 	= require('../lib/replace-text'),
+	Grepper 	= require('../lib/grep');
 
 var	opts = {
 	// newVersion: 123456,
 	newVersion: (new Date()).getTime(),
 	requireJs: true,
 	cb: function (err, results) {},
-	filePath: "../test-utils/fixtures/index.html",
+	filePath: path.join(process.cwd(), "test-utils/fixtures/index.html"),
 	assets: ["css/all-min.css", "js/app.newie.js", "js/app.oldie.js"]
 };
 

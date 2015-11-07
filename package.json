@@ -1,6 +1,6 @@
 {
   "name": "node-version-assets",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "version your static assets",
   "main": "index.js",
   "scripts": {
@@ -48,14 +48,14 @@
     "version",
     "versioning"
   ],
-  "devDependencies": {
-    "tap": "https://github.com/isaacs/node-tap/archive/master.tar.gz",
-    "curry": "0.0.4",
-    "async": "~0.2.5"
-  },
   "dependencies": {
-    "underscore": "~1.4.4",
-    "async": "~0.2.1",
-    "crypto": "0.0.3"
+    "async": "^1.5.0",
+    "crypto": "0.0.3",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "async": "^1.5.0",
+    "curry": "^1.2.0",
+    "tap": "^2.2.0"
   }
 }

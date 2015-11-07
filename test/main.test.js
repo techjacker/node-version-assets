@@ -1,17 +1,18 @@
 var test  = require('tap').test,
     _     = require('underscore'),
     async = require('async'),
+    path  = require('path'),
     fs    = require('fs'),
 	// my libs
     Main  = require('../lib/main');
 
 // my test vars
-var cssFile 	= "all-min.css",
+var cssFile 		= "all-min.css",
     jsNewie     = "app.newie.js",
     jsOldie     = "app.oldie.js",
-    fixturesDir = './../test-utils/fixtures/',
-    cssDir 		= fixturesDir + 'css/',
-    jsDir  		= fixturesDir + 'js/',
+    fixturesDir = path.join(process.cwd(), 'test-utils/fixtures/'),
+    cssDir 			= fixturesDir + 'css/',
+    jsDir  			= fixturesDir + 'js/',
     opts        = {
 		cb: function (err, results) {},
 		assets: [cssDir + cssFile, jsDir + jsNewie, jsDir + jsOldie],
