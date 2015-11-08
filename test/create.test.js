@@ -1,15 +1,17 @@
 var test     = require('tap').test,
     async    = require('async'),
     fs       = require('fs'),
+    path     = require('path'),
     _        = require('underscore'),
     Stream   = require('stream'),
-	// my libs
+	
+		// internal modules
     Replacer = require('../lib/replace-text'),
     Creator  = require('../lib/create');
 
 
 // common test class vars
-var fixturesDir = '../test-utils/fixtures/',
+var fixturesDir = path.join(process.cwd(), '/test-utils/fixtures/'),
 // var fixturesDir = 'test-utils/fixtures/',
 	cssDir = fixturesDir + 'css/',
 	cssFile = "all-min.css",

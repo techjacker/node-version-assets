@@ -1,5 +1,6 @@
 var test     = require('tap').test,
     async    = require('async'),
+    path     = require('path'),
     fs       = require('fs'),
     _        = require('underscore'),
     Stream   = require('stream'),
@@ -9,7 +10,7 @@ var test     = require('tap').test,
 
 
 // common test class vars
-var fixturesDir = '../test-utils/fixtures/',
+var fixturesDir = path.join(process.cwd(), 'test-utils/fixtures/'),
 	cssDir = fixturesDir + 'css/',
 	cssFile = "all-min.css",
 	opts = {

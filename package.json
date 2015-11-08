@@ -1,13 +1,13 @@
 {
   "name": "node-version-assets",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "version your static assets",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "tap ./test",
-    "pretest": "node ./test-utils/pre-post-test",
-    "posttest": "node ./test-utils/pre-post-test"
+    "test": "tap ./test/*.test.js",
+    "pretest": "node ./test-utils/pre-post-test.js",
+    "posttest": "node ./test-utils/pre-post-test.js"
   },
   "author": "Andrew Griffiths <mail@andrewgriffithsonline.com>",
   "maintainers": [
@@ -23,7 +23,7 @@
   },
   "github": "https://github.com/techjacker/node-version-assets",
   "engines": [
-    "node >= 0.8.0"
+    "node >= 4"
   ],
   "bugs": {
     "url": "https://github.com/techjacker/node-version-assets/issues"
@@ -48,14 +48,14 @@
     "version",
     "versioning"
   ],
-  "devDependencies": {
-    "tap": "https://github.com/isaacs/node-tap/archive/master.tar.gz",
-    "curry": "0.0.4",
-    "async": "~0.2.5"
-  },
   "dependencies": {
-    "underscore": "~1.4.4",
-    "async": "~0.2.1",
-    "crypto": "0.0.3"
+    "async": "~1.5.0",
+    "crypto": "0.0.3",
+    "underscore": "~1.8.3"
+  },
+  "devDependencies": {
+    "async": "~1.5.0",
+    "curry": "~1.2.0",
+    "tap": "~2.2.0"
   }
 }

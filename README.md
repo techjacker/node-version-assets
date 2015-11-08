@@ -2,6 +2,10 @@
 
 [![Build Status](https://secure.travis-ci.org/techjacker/node-version-assets.png)](http://travis-ci.org/techjacker/node-version-assets)
 
+
+#### V1 release = Now works on Node.js v4+
+
+
 - Versions your static assets using the power of streams!
 - Version number produced from md5hash of each file -> so unchanged assets will keep the same file name and not blow the browser cache.
 - Greps your html and css files and updates filenames of versioned files.
@@ -106,15 +110,19 @@ grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin versi
 
 ## Optional, ahem, Options
 
+#### @param {options.silence}
+- accepts: boolean
+- default: false
+- if set to true, it will silence all output to STDOUT
+
+
 #### @param {options.grepFiles}
 - accepts: array of strings
 - list of files (relative filepaths) containing references to the {options.assets} which need to be renamed
 
-
 #### @param {options.newVersion}
 - accepts: string (only numbers or letters)
 - not required: defaults to generating an md5 hash of the file (recommended to leave as default as md5 hashing means that assets will not blow browser cache if they're unchanged)
-
 
 #### @param {options.keepOriginalAndOldVersions}
 - accepts: boolean
@@ -132,7 +140,6 @@ grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin versi
 - accepts: boolean
 - set this to true if you want to delete just the OLD VERSIONS
 - if options.keepOriginalAndOldVersions is true then the original will still be deleted
-
 
 #### @param {options.requireJs}
 - accepts: boolean
@@ -166,3 +173,4 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 - 0.0.2: added {options.keepOriginalAndOldVersions}
 - 0.0.3: enabled versioning of all file types (previously just utf8)
 - 0.0.4 - 0.0.8: misc bug fixes
+- 1.0.0 - Updated to work on Node.js v4+
