@@ -106,15 +106,19 @@ grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin versi
 
 ## Optional, ahem, Options
 
+#### @param {options.silence}
+- accepts: boolean
+- default: false
+- if set to true, it will silence all output to STDOUT
+
+
 #### @param {options.grepFiles}
 - accepts: array of strings
 - list of files (relative filepaths) containing references to the {options.assets} which need to be renamed
 
-
 #### @param {options.newVersion}
 - accepts: string (only numbers or letters)
 - not required: defaults to generating an md5 hash of the file (recommended to leave as default as md5 hashing means that assets will not blow browser cache if they're unchanged)
-
 
 #### @param {options.keepOriginalAndOldVersions}
 - accepts: boolean
@@ -132,7 +136,6 @@ grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin versi
 - accepts: boolean
 - set this to true if you want to delete just the OLD VERSIONS
 - if options.keepOriginalAndOldVersions is true then the original will still be deleted
-
 
 #### @param {options.requireJs}
 - accepts: boolean
