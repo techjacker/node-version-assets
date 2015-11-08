@@ -40,20 +40,27 @@ var postTest = function (callback, fix) {
 			fs.readFile(assetPath + '.original', cb);
 		}
 		restoreVersionedFile = function (versioned, cb) {
-			var write = fs.createWriteStream(versioned.file);
-			write.on('end', cb).on('error', cb);
-			fs.createReadStream(versioned.original).pipe(write);
+			var read = fs.createReadStream(versioned.original)
+										.on('end', cb)
+										.on('error', cb),
+				write = fs.createWriteStream(versioned.file)
+										.on('end', cb)
+										.on('error', cb)
+
+			read.pipe(write);
 		};
 
 	////////////////////////////////////////////////////////
 	// Delete new versioned files produced by tests FIRST //
 	////////////////////////////////////////////////////////
 
+
 	async.map(allFiles, deleteFiles, function (err, deletedFiles) {
 
 		///////////////////////////////////
 		// restore dummy versioned files //
 		///////////////////////////////////
+
 		async.map(versionedFiles, restoreVersionedFile, function (err) {
 
 			if (err) {

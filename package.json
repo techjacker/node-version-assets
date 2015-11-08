@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "tap ./test",
+    "test": "tap ./test/*.test.js",
     "pretest": "node ./test-utils/pre-post-test.js",
     "posttest": "node ./test-utils/pre-post-test.js"
   },
