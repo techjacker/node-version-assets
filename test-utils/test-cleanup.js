@@ -2,6 +2,7 @@ var	async = require('async'),
 	curry = require('curry'),
 	util = require('util'),
 	fs = require('fs'),
+	path = require('path'),
 // my libs
 	Replacer = require('../lib/replace-text'),
 	Deleter = require('../lib/delete');
@@ -10,21 +11,21 @@ var	async = require('async'),
 
 var postTest = function (callback, fix) {
 	var versionNum = 123456,
-		fixturesDir = fix || './test-utils/fixtures/',
+		fixturesDir = fix || path.join(process.cwd(), 'test-utils/fixtures/'),
 		assets = [fixturesDir + "css/all-min.css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
 		versionedAssets = [fixturesDir + "css/all-min" + versionNum + ".css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
 		grepFiles = [fixturesDir + "index.html"];
 
 	var allFiles = assets.concat(grepFiles),
-		versionedFiles = [],
-		versionedFilesOriginals = allFiles.map(function (path) {
-
-			return path.replace(/(.*)(.js|.css)$/, function (match, p1, p2, p3, offset, string) {
-
-				var file = p1 + '.' + versionNum + p2;
-				versionedFiles.push(file);
-				return file + '.original';
+		versionedFiles = allFiles.map(function (fPath) {
+			var file;
+			fPath.replace(/(.*)(.js|.css)$/, function (match, p1, p2, p3, offset, string) {
+				file = p1 + '.' + versionNum + p2;
 			});
+			return {
+				file: file,
+				original: file + '.original'
+			};
 		}).slice(0, -1), // get rid of index.html
 		deleteFilesArrayFns = [],
 		writeFilesArrayFns = [],
@@ -37,6 +38,11 @@ var postTest = function (callback, fix) {
 		},
 		restoreFileContents = function (assetPath, cb) {
 			fs.readFile(assetPath + '.original', cb);
+		}
+		restoreVersionedFile = function (versioned, cb) {
+			var write = fs.createWriteStream(versioned.file);
+			write.on('end', cb).on('error', cb);
+			fs.createReadStream(versioned.original).pipe(write);
 		};
 
 	////////////////////////////////////////////////////////
@@ -48,12 +54,20 @@ var postTest = function (callback, fix) {
 		///////////////////////////////////
 		// restore dummy versioned files //
 		///////////////////////////////////
-		async.map(versionedFiles, fs.writeFile, function (err, versionedFilesOriginals) {
+		async.map(versionedFiles, restoreVersionedFile, function (err) {
+
+			if (err) {
+				return callback(err);
+			}
 
 			///////////////////////////////////////////////
 			// Copy original contents of files to assets //
 			///////////////////////////////////////////////
 			async.map(allFiles, restoreFileContents, function (err, originalFiles) {
+
+				if (err) {
+					return callback(err);
+				}
 
 				// fs.readFile()
 				originalFiles.forEach(function (original, index) {
@@ -61,9 +75,9 @@ var postTest = function (callback, fix) {
 					var origFile = originalFiles[index];
 
 					if (origFile) {
-						// equivalent to: fs.writeFile(allFiles[index], originalFiles[index].toString(), callback);
-						var curriedWriteFile = curry([allFiles[index], originalFiles[index].toString()], fs.writeFile);
-						writeFilesArrayFns.push(curriedWriteFile);
+						writeFilesArrayFns.push(function(cb) {
+							fs.writeFile(allFiles[index], originalFiles[index].toString(), cb);
+						});
 					}
 				});
 

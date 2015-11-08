@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node index.js",
     "test": "tap ./test",
-    "pretest": "node ./test-utils/pre-post-test",
-    "posttest": "node ./test-utils/pre-post-test"
+    "pretest": "node ./test-utils/pre-post-test.js",
+    "posttest": "node ./test-utils/pre-post-test.js"
   },
   "author": "Andrew Griffiths <mail@andrewgriffithsonline.com>",
   "maintainers": [
@@ -23,7 +23,7 @@
   },
   "github": "https://github.com/techjacker/node-version-assets",
   "engines": [
-    "node >= 0.8.0"
+    "node >= 4"
   ],
   "bugs": {
     "url": "https://github.com/techjacker/node-version-assets/issues"

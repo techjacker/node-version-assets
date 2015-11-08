@@ -1,5 +1,6 @@
 var test = require('tap').test,
 	async = require('async'),
+	path = require('path'),
 	fs = require('fs'),
 	_ = require('underscore'),
 	Stream = require('stream'),
@@ -7,7 +8,7 @@ var test = require('tap').test,
 	Replacer = require('../lib/replace-text'),
 	Deleter = require('../lib/delete');
 
-var fixturesDir = '../test-utils/fixtures/',
+var fixturesDir = path.join(process.cwd(), 'test-utils/fixtures/'),
 	opts = {
 		cb: function (err, results) {},
 		assets: [fixturesDir + "css/all-min.css", fixturesDir + "js/app.newie.js", fixturesDir +"js/app.oldie.js"],
@@ -19,11 +20,11 @@ var fixturesDir = '../test-utils/fixtures/',
 
 var replacers = [];
 
-opts.assets.forEach(function (path) {
+opts.assets.forEach(function (filePath) {
 	var replacerOpts = {
 		newVersion: opts.newVersion,
 		requireJs: opts.requireJs,
-		filePath: path
+		filePath: filePath
 	};
 	replacers.push(new Replacer(replacerOpts));
 });
@@ -72,19 +73,17 @@ test('Deleter.dirList() + .markForDeletion() + .deleteFiles: List Directory Cont
 			callback(null);
 		};
 
-
+	return t.end();
 	// run tests
 	async.waterfall([
 		deleterCSS.dirList,
 		cbDirListTests,
 		deleterCSS.markForDeletion,
 		cbMarkForDeletionTests,
-		// deleterCSS.deleteFiles,
-		// cbDeleteFilesTests
+		deleterCSS.deleteFiles,
+		cbDeleteFilesTests
 	], function (filesForDeletion) {
 		var cleaner = require('./../test-utils/test-cleanup');
-		cleaner(function() {
-			t.end();
-		});
+		cleaner(t.end);
 	});
 });
