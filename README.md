@@ -2,6 +2,10 @@
 
 [![Build Status](https://secure.travis-ci.org/techjacker/node-version-assets.png)](http://travis-ci.org/techjacker/node-version-assets)
 
+
+#### V1 release = Now works on Node.js v4+
+
+
 - Versions your static assets using the power of streams!
 - Version number produced from md5hash of each file -> so unchanged assets will keep the same file name and not blow the browser cache.
 - Greps your html and css files and updates filenames of versioned files.
@@ -169,3 +173,4 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 - 0.0.2: added {options.keepOriginalAndOldVersions}
 - 0.0.3: enabled versioning of all file types (previously just utf8)
 - 0.0.4 - 0.0.8: misc bug fixes
+- 1.0.0 - Updated to work on Node.js v4+
