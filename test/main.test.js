@@ -153,7 +153,7 @@ test('Main.run(): md5 versioning', function(t) {
       t.ok(jsDirContents.indexOf(jsNewieVersioned) !== -1, "jsNewie md5 versioned copy generated");
       t.ok(jsDirContents.indexOf(jsOldieVersioned) !== -1, "jsOldie md5 versioned copy generated");
 
-        
+
       //////////////////////////////////////////////////////////////////////
       // run again with same file contents > shd generate same file names //
       //////////////////////////////////////////////////////////////////////
@@ -186,4 +186,21 @@ test('Main.run(): md5 versioning', function(t) {
     mainMd5.run(runTestAssertions);
     // fixtures dir = dif when run from this script (rather than npm run-script pretest)
   });
+});
+
+test('Main.run(): matching file names', function(t) {
+	var mainInstance = new Main({
+		assets: [
+      jsDir + 'login-bundle.js',
+      jsDir + 'bundle.js'
+    ],
+    grepFiles: []
+	});
+
+	mainInstance.run(function() {
+		var jsDirContents = fs.readdirSync(jsDir);
+		t.ok(jsDirContents.indexOf(mainInstance.replacers[0].outputFileName) !== -1, mainInstance.replacers[0].outputFileName + " exists");
+		t.ok(jsDirContents.indexOf(mainInstance.replacers[1].outputFileName) !== -1, mainInstance.replacers[1].outputFileName + " exists");
+		t.end();
+	});
 });

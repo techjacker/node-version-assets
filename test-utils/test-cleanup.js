@@ -12,8 +12,8 @@ var	async = require('async'),
 var postTest = function (callback, fix) {
 	var versionNum = 123456,
 		fixturesDir = fix || path.join(process.cwd(), 'test-utils/fixtures/'),
-		assets = [fixturesDir + "css/all-min.css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
-		versionedAssets = [fixturesDir + "css/all-min" + versionNum + ".css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js"],
+		assets = [fixturesDir + "css/all-min.css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js", fixturesDir + "js/bundle.js", fixturesDir + "js/login-bundle.js"],
+		versionedAssets = [fixturesDir + "css/all-min" + versionNum + ".css", fixturesDir + "js/app.newie.js", fixturesDir + "js/app.oldie.js", fixturesDir + "js/bundle" + versionNum + ".js", fixturesDir + "js/login-bundle" + versionNum + ".js"],
 		grepFiles = [fixturesDir + "index.html"];
 
 	var allFiles = assets.concat(grepFiles),
