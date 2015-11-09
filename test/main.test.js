@@ -194,6 +194,7 @@ test('Main.run(): matching file names', function(t) {
       jsDir + 'login-bundle.js',
       jsDir + 'bundle.js'
     ],
+    silence: true,
     grepFiles: []
 	});
 
