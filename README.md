@@ -118,7 +118,8 @@ grunt.registerTask('default', 'lint rjs jpgmin gifmin pngmin concat cssmin versi
 
 #### @param {options.grepFiles}
 - accepts: array of strings
-- list of files (relative filepaths) containing references to the {options.assets} which need to be renamed
+- list of files (relative filepaths or globbed filepaths) containing references to the {options.assets} which need to be renamed
+- a globbed filepath specifies all files that matches a certain pattern (i.e. /x/y/*.html will match all files in that directory with .html suffix)
 
 #### @param {options.newVersion}
 - accepts: string (only numbers or letters)

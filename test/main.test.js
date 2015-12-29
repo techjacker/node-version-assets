@@ -20,19 +20,27 @@ var cssFile     = "all-min.css",
       grepFiles: [fixturesDir + "index.html"],
       // requireJs: true,
       newVersion: 1111111111
-  };
+  },
+  globOpts = _.extend({}, opts, { grepFiles: [fixturesDir + "*.html"] });
 
 var cleaner = require('./../test-utils/test-cleanup');
 
   test('Main Contructor Fn: shd assign correct properties', function(t) {
 
    var mainInstance = new Main(opts),
+       mainGlobInstance = new Main(globOpts),
      mainInstanceDefaultsChecking = new Main(_.extend({}, opts, {cb: null, newVersion: null, grepFiles: null}));
 
    // shd assign correctly
    t.equal(mainInstance.cb, opts.cb);
    t.equal(mainInstance.assets, opts.assets);
-   t.equal(mainInstance.grepFiles, opts.grepFiles);
+   t.same(mainInstance.grepFiles, opts.grepFiles);
+
+   // shd assign glob options correctly
+   var htmlFixtures = [fixturesDir + 'index.html', fixturesDir + 'index2.html'];
+   t.equal(mainGlobInstance.cb, opts.cb);
+   t.equal(mainGlobInstance.assets, opts.assets);
+   t.same(mainGlobInstance.grepFiles, htmlFixtures);
 
    // defaults
    t.equal(mainInstanceDefaultsChecking.requireJs, undefined);

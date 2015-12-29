@@ -1,6 +1,6 @@
 {
   "name": "node-version-assets",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "version your static assets",
   "main": "index.js",
   "scripts": {
@@ -22,9 +22,9 @@
     "url": "https://github.com/techjacker/node-version-assets"
   },
   "github": "https://github.com/techjacker/node-version-assets",
-  "engineStrict" : true,
+  "engineStrict": true,
   "engines": {
-      "node": ">=4"
+    "node": ">=4"
   },
   "bugs": {
     "url": "https://github.com/techjacker/node-version-assets/issues"
@@ -52,6 +52,7 @@
   "dependencies": {
     "async": "~1.5.0",
     "crypto": "0.0.3",
+    "glob": "^6.0.1",
     "underscore": "~1.8.3"
   },
   "devDependencies": {
