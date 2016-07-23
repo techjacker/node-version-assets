@@ -147,3 +147,25 @@ test('.proto.run(haystack): should correctly version files when one file name co
 
 	t.end();
 });
+
+test('.proto.run(haystack): should preprend cdn path to versioned assets when cdnPath option is present', function(t) {
+
+	var cdnPath = 'https://cdn.example.com',
+    jsAsset = 'script.js',
+		jsAssetVersioned = 'script.' + opts.newVersion + '.js',
+    jsHaystack1 = '<script type="text/html" src="/random/public/' + jsAsset + '"</script>',
+    jsHaystack1Expected = '<script type="text/html" src="' + cdnPath + '/random/public/' + jsAssetVersioned + '"</script>',
+    jsHaystack2 = '<script type="text/html" src="random/public/' + jsAsset + '"</script>',
+    jsHaystack2Expected = '<script type="text/html" src="' + cdnPath + '/random/public/' + jsAssetVersioned + '"</script>',
+    jsHaystack3 = '<script type="text/html" src="' + jsAsset + '"</script>',
+    jsHaystack3Expected = '<script type="text/html" src="' + cdnPath + '/' + jsAssetVersioned + '"</script>',
+
+		replacerJs = new ReplaceText(_.extend({}, opts, {filePath: jsAsset, cdnPath: cdnPath}));
+
+  // should be replaced
+  t.equal(replacerJs.run(jsHaystack1), jsHaystack1Expected);
+  t.equal(replacerJs.run(jsHaystack2), jsHaystack2Expected);
+  t.equal(replacerJs.run(jsHaystack3), jsHaystack3Expected);
+
+	t.end();
+});
