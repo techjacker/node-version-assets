@@ -159,6 +159,8 @@ test('.proto.run(haystack): should preprend cdn path to versioned assets when cd
     jsHaystack2Expected = '<script type="text/html" src="' + cdnPath + '/random/public/' + jsAssetVersioned + '"</script>',
     jsHaystack3 = '<script type="text/html" src="' + jsAsset + '"</script>',
     jsHaystack3Expected = '<script type="text/html" src="' + cdnPath + '/' + jsAssetVersioned + '"</script>',
+    jsHaystack4 = '<script type="text/html" src="../' + jsAsset + '"</script>',
+    jsHaystack4Expected = '<script type="text/html" src="../' + jsAssetVersioned + '"</script>',
 
 		replacerJs = new ReplaceText(_.extend({}, opts, {filePath: jsAsset, cdnPath: cdnPath}));
 
@@ -166,6 +168,7 @@ test('.proto.run(haystack): should preprend cdn path to versioned assets when cd
   t.equal(replacerJs.run(jsHaystack1), jsHaystack1Expected);
   t.equal(replacerJs.run(jsHaystack2), jsHaystack2Expected);
   t.equal(replacerJs.run(jsHaystack3), jsHaystack3Expected);
+  t.equal(replacerJs.run(jsHaystack4), jsHaystack4Expected);
 
 	t.end();
 });
