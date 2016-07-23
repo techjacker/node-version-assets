@@ -162,6 +162,13 @@ If set to true then unsuffixed js assets (listed in the assets array) will be up
 </script>
 ```
 
+#### @param {options.cdnPath}
+- accepts: string
+- not required
+- if set, will prepend the `cdnPath` to all assets that are specified with an absolute path (ie, a leading `/`), eg:
+	- `src="/public/all-min.js"` > `src="https://cdn.example.com/public/all.min.01135498.js"`
+	- `src="images/image.jpg"` > `src="images/image.48503824.jpg"`
+	- `src="../images/image.jpg"` > `src="../images/image.48503824.jpg"`
 
 ## Potential Gotchas
 - Assets that you want versioned must be listed in the assets array
