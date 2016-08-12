@@ -20,8 +20,9 @@ var cssFile     = "all-min.css",
       grepFiles: [fixturesDir + "index.html"],
       // requireJs: true,
       newVersion: 1111111111
-  },
-  globOpts = _.extend({}, opts, { grepFiles: [fixturesDir + "*.html"] });
+    },
+    globOpts = _.extend({}, opts, { grepFiles: [fixturesDir + "*.html"] }),
+    cdnOpts = _.extend({}, opts, { cdnPath: 'https://cdn.example.com' });
 
 var cleaner = require('./../test-utils/test-cleanup');
 
@@ -29,7 +30,8 @@ var cleaner = require('./../test-utils/test-cleanup');
 
    var mainInstance = new Main(opts),
        mainGlobInstance = new Main(globOpts),
-     mainInstanceDefaultsChecking = new Main(_.extend({}, opts, {cb: null, newVersion: null, grepFiles: null}));
+       mainCdnInstance = new Main(cdnOpts),
+       mainInstanceDefaultsChecking = new Main(_.extend({}, opts, {cb: null, newVersion: null, grepFiles: null}));
 
    // shd assign correctly
    t.equal(mainInstance.cb, opts.cb);
@@ -41,6 +43,10 @@ var cleaner = require('./../test-utils/test-cleanup');
    t.equal(mainGlobInstance.cb, opts.cb);
    t.equal(mainGlobInstance.assets, opts.assets);
    t.same(mainGlobInstance.grepFiles, htmlFixtures);
+
+   // shd assign cdn option correctly
+   t.equal(mainInstance.cdnPath, undefined);
+   t.equal(mainCdnInstance.cdnPath, cdnOpts.cdnPath);
 
    // defaults
    t.equal(mainInstanceDefaultsChecking.requireJs, undefined);
