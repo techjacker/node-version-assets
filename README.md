@@ -1,7 +1,6 @@
 # node-version-assets
 
-[![Build Status](https://secure.travis-ci.org/techjacker/node-version-assets.png)](http://travis-ci.org/techjacker/node-version-assets)
-
+[![Build Status](https://travis-ci.org/techjacker/node-version-assets.svg?branch=master)](https://travis-ci.org/techjacker/node-version-assets)
 
 #### V1 release = Now works on Node.js v4+
 
