@@ -2,6 +2,12 @@
   "name": "node-version-assets",
   "version": "1.2.0",
   "description": "version your static assets",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/techjacker/node-version-assets/blob/master/LICENSE"
+    }
+  ],
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -29,12 +35,6 @@
   "bugs": {
     "url": "https://github.com/techjacker/node-version-assets/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/techjacker/node-version-assets/blob/master/LICENSE"
-    }
-  ],
   "tags": [
     "static",
     "performance",
@@ -51,7 +51,6 @@
   ],
   "dependencies": {
     "async": "~1.5.0",
-    "crypto": "0.0.3",
     "glob": "^6.0.1",
     "underscore": "~1.8.3"
   },
