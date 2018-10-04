@@ -75,6 +75,16 @@ Files whose contents were updated with refs to renamed asset files:
    views/prod/index.html
 ```
 
+#### Run with the CLI
+
+Install `npm i -g node-version-assets`
+
+```bash
+node-version-assets -a app.js,app.css -g index.html
+```
+
+Use `-h` to see the CLI help.
+
 ## Grunt Example
 ```JavaScript
 grunt.registerTask('version-assets', 'version the static assets just created', function() {
